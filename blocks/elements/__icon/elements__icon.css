@@ -1,0 +1,6 @@
+.elements__icon {
+  background: url(../../../images/icon-like.svg) no-repeat 50%/100%;
+  width: 22px;
+  height: 19px;
+  border: none;
+}

@@ -1,0 +1,11 @@
+.popup__field-about-name {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    border: none;
+    border-bottom: 1px solid #000000;
+    padding-bottom: 13px;
+    width: 358px;
+    margin: 48px auto;
+}

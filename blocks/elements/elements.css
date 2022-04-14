@@ -1,12 +1,16 @@
 @import url(./__element/elements__element.css);
-@import url(./__container/elements__icon.css);
+@import url(./__container/elements__container.css);
 @import url(./__img/elements__img.css);
 @import url(./__title/elements__title.css);
+@import url(./__icon/elements__icon.css);
+@import url(./__inner-container/elements__inner-container.css);
 
 .elements {
-    max-width: 880px;
-    margin: 0 auto;
-    display: grid;
-    grid-gap: 17px;    
-    grid-template-columns: repeat(3, auto);
+  max-width: 880px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  column-gap: 17px;
+  row-gap: 20px;
+  grid-auto-rows: 361px;
 }

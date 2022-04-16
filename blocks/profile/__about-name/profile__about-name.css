@@ -10,10 +10,11 @@
   max-width: 294px;
 }
 
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 580px) {
   .profile__about-name  {
     font-size: 14px;
     line-height: 17px;
     text-align: center;
+    margin-top: 14px;
   }
 }

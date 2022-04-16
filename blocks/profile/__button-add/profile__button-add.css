@@ -4,11 +4,18 @@
   border-radius: 2px;
   width: 150px;
   height: 50px;
-  background: url(../../../images/icon-add.svg) no-repeat center/22px 22px #000;;
+  background: url(../../../images/icon-add.svg) no-repeat center/22px 22px #000;
+  cursor: pointer;
 }
 
-@media screen and (max-width: 470px) {
+.profile__button-add:hover {
+  opacity: 0.6;
+}
+
+
+@media screen and (max-width: 600px) {
   .profile__button-add {
     width: 282px;
+    padding: 0;    
   }
 }

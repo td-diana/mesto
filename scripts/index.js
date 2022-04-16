@@ -21,11 +21,11 @@ popupCloseBtn.forEach(function (arrElement){
 });
 
 
-const popupForm = document.querySelector('.popup__form');
-const popupFieldName = popupForm.querySelector('.popup__field-name');
-const popupFieldAboutName = popupForm.querySelector('.popup__field-about-name');
-const profileName = document.querySelector('.profile__name');
-const profileAboutName = document.querySelector('.profile__about-name');
+let popupForm = document.querySelector('.popup__form');
+let popupFieldName = popupForm.querySelector('.popup__field-name');
+let popupFieldAboutName = popupForm.querySelector('.popup__field-about-name');
+let profileName = document.querySelector('.profile__name');
+let profileAboutName = document.querySelector('.profile__about-name');
 
 function popupFormSubmitHandler (evt) {
     evt.preventDefault();

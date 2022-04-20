@@ -6,6 +6,6 @@
 @media screen and (max-width: 600px) {
   .footer {
     max-width: 282px;
-    margin: 48px aito 36px;
+    margin: 48px auto 36px;
   }
 }

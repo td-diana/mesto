@@ -6,9 +6,9 @@
   color: #fff;
   text-align: center;
   margin: 48px auto 37px;
-  outline: none;
   padding: 0;
   cursor: pointer;
+  border-width: 0;
 }
 
 .popup__button-save:hover {

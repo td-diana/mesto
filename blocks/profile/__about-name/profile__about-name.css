@@ -10,6 +10,12 @@
   max-width: 294px;
 }
 
+@media screen and (max-width: 730px) {
+  .profile__about-name {
+    max-width: 190px;
+  }
+}
+
 @media screen and (max-width: 580px) {
   .profile__about-name {
     font-size: 14px;

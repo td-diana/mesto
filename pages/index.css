@@ -35,6 +35,13 @@
 @import url(../blocks/elements/__icon-like/elements__icon-like.css);
 @import url(../blocks/elements/__inner-container/elements__inner-container.css);
 @import url(../blocks/elements/__icon-like/_mod_active/elements__icon-like_mod_active.css);
+@import url(../blocks/elements/__icon-delete/elements__icon-delete.css);
 
 @import url(../blocks/elements/__list/elements__list.css);
 
+@import url(../blocks/popup/__images/popup__images.css);
+@import url(../blocks/popup/__img-box/popup__img-box.css);
+@import url(../blocks/popup/__title_img/popup__title_img.css);
+@import url(../blocks/popup/__container-img/popup__container-img.css);
+
+@import url(../blocks/popup/__field-title/popup__field-title.css);

@@ -17,7 +17,7 @@ const elementsList = document.querySelector('.elements__list');
 const popupImg = document.querySelector('.popup_img');
 const popupCloseImg = popupImg.querySelector('.popup__button-close_img');
 const popupImages = document.querySelector('.popup__images');
-const popupTitleImg = document.querySelector('.popup__title_img');
+const popupTitleImg = document.querySelector('.popup__title-img');
 
 const initialCards = [
     {

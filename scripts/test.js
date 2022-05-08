@@ -47,10 +47,11 @@ function createCard(cardData) {
     popupImages.src = evt.target.src;
     popupImages.alt = evt.target.alt;
     popupTitleImg.textContent = evt.target.alt;
-  }
+  } 
   
   return elementsElement;
 }
+
 
 function renderCard(elements) {
   elementsList.prepend(elements);
@@ -93,6 +94,8 @@ function popupEditFormSubmitHandler(evt) {
   profileAboutName.textContent = popupFieldAboutName.value;
   closePopupEdit();  
 }
+
+// попап добавиь место
 
 function popupAddFormSubmitHandler(evt) {
   evt.preventDefault();

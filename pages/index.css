@@ -3,7 +3,6 @@
 @import url(../blocks/root/root.css);
 @import url(../blocks/header/header.css);
 @import url(../blocks/header/__logo/header__logo.css);
-@import url(../blocks/content/content.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/elements/elements.css);
 @import url(../blocks/footer/footer.css);
@@ -41,7 +40,7 @@
 
 @import url(../blocks/popup/__images/popup__images.css);
 @import url(../blocks/popup/__img-box/popup__img-box.css);
-@import url(../blocks/popup/__title_img/popup__title-img.css);
+@import url(../blocks/popup/__title-img/popup__title-img.css);
 @import url(../blocks/popup/__container-img/popup__container-img.css);
 
 @import url(../blocks/popup/__field-title/popup__field-title.css);

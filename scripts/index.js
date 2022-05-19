@@ -1,10 +1,12 @@
 //1. Валидация формы «Редактировать профиль»
 //Валидируйте форму «Редактировать профиль» заготовьте элементы ошибок по макету в «Фигме»
 //Если поле формы «Редактировать профиль» не прошло валидацию, под ним должен появляться красный текст ошибки.
+
 //Настройки валидации такие:
 //оба поля обязательные;
 //в поле «Имя» должно быть от 2 до 40 символов;
 //в поле «О себе» должно быть от 2 до 200 символов;
+
 //Используйте стандартные браузерные тексты ошибок.
 //Если хотя бы одно из полей не прошло валидацию, кнопка «Сохранить» должна быть неактивной. Если оба поля прошли — активной. Цвета неактивных кнопок возьмите из макета.
 
@@ -17,15 +19,12 @@
 //в поле «Название» должно быть от 2 до 30 символов,
 //в поле «Ссылка на картинку» должен быть URL.
 //И снова используйте стандартные браузерные тексты ошибок.
-//Если хотя бы одно из полей не прошло валидацию, кнопка «Сохранить» должна быть неактивной. Если оба поля прошли — активной. Цвета неактивных кнопок те же.
+//Если хотя бы одно из полей не прошло валидацию, кнопка «Сохранить» должна быть неактивной. 
+//Если оба поля прошли — активной. Цвета неактивных кнопок те же.
 
 //3. Закрытие попапа кликом на оверлей
 
 //4. Закрытие попапа нажатием на Esc
-
-//Все кнопки на закрытие работают через один class="popup__button-close", все окна закрываются через overlay
-
-
 
 
 const profileName = document.querySelector(".profile__name");
@@ -35,20 +34,18 @@ const profileButtonEdit = document.querySelector(".profile__button-edit");
 const profileButtonAdd = document.querySelector(".profile__button-add");
 
 const popupAdd = document.querySelector(".popup-add");
-const popupAddForm = popupAdd.querySelector('.form');
+const popupAddForm = popupAdd.querySelector('.popup__form');
+const popupFieldTitle = popupAdd.querySelector(".popup__field-title");
+const popupFieldUrl = popupAdd.querySelector(".popup__field-url");
 
 const popupEdit = document.querySelector('.popup-edit');
-const popupEditForm = popupEdit.querySelector('.form');
+const popupEditForm = popupEdit.querySelector('.popup__form');
+const popupFieldName = popupEdit.querySelector(".popup__field-name");
+const popupFieldAboutName = popupEdit.querySelector(".popup__field-about-name");
 
 const popupGlobal = document.querySelectorAll(".popup");
 
-const popupFieldTitle = document.querySelector(".popup__field-title");
-const popupFieldUrl = document.querySelector(".popup__field-url");
-const popupFieldName = document.querySelector(".popup__field-name");
-const popupFieldAboutName = document.querySelector(".popup__field-about-name");
-
 const popupImg = document.querySelector(".popup_img");
-
 
 function createCard(cardData) {
   const elementsTemplate = document.querySelector(".elements__template").content;
@@ -64,8 +61,7 @@ function createCard(cardData) {
   function removeButton(evt) {evt.target.closest(".elements__element").remove();}
   function likeButton(evt) {evt.target.classList.toggle("elements__icon-like_mod_active");}
 
-  elementImage.addEventListener("click", () => imgElement(cardData));   
-  
+  elementImage.addEventListener("click", () => imgElement(cardData));  
   return elementsElement;
 }
 
@@ -102,10 +98,12 @@ setlistenerClosePopup();
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  document.addEventListener('keydown', closeEsc);
 }
 
 function openPopup(popup) {
-  popup.classList.add("popup_opened");
+  popup.classList.add("popup_opened");  
+  document.addEventListener('keydown', closeEsc);
 }
 
 function openPopupEdit() {
@@ -115,28 +113,37 @@ function openPopupEdit() {
 }
 
 function openPopupAdd() {
-  openPopup(popupAdd);  
+  openPopup(popupAdd);    
 }
 
 //редактирования профиля
 popupEditForm.addEventListener("submit", evt => {
   evt.preventDefault();
+  const submitBtn = evt.target.querySelector('.popup__button')
   profileName.textContent = popupFieldName.value;
   profileAboutName.textContent = popupFieldAboutName.value;
   closePopup(popupEdit);  
+  disableButton(submitBtn, inactiveButtonClass)
 });
 
 //добавления карточки
 popupAddForm.addEventListener("submit", evt => {
-  evt.preventDefault();
+  evt.preventDefault();  
   const cardData = {
     name: popupFieldTitle.value,
     link: popupFieldUrl.value,
-  }; 
-  popupAddForm.reset(); 
-  renderCard(cardData);  
-  closePopup(popupAdd);  
+  };   
+  renderCard(cardData);    
+  closePopup(popupAdd);    
+  popupAddForm.reset();
 });
+
+
+//закрытие попапа нажатием на Esc
+function closeEsc(evt) {
+  if (evt.key === 'Escape')
+    closePopup(document.querySelector('.popup_opened'));
+}
 
 profileButtonEdit.addEventListener("click", openPopupEdit);
 profileButtonAdd.addEventListener("click", openPopupAdd);

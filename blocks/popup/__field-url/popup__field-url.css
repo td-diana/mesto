@@ -1,0 +1,5 @@
+@media screen and (max-width: 510px) {
+    .popup__field-url {
+      margin: 5px 30px 75px 22px;
+    }
+  }

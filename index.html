@@ -1,90 +1,152 @@
 <!DOCTYPE html>
 <html lang="ru">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="pages/index.css" />
-  <title>Mesto</title>
-</head>
-<main>
-  <section class="profile">
-    <div class="profile__container">
-      <img src="./images/avatar.jpg" alt="фото Жак-Ив Кусто" class="profile__avatar" />
-      <div class="profile__info">
-        <div class="profile__inner-container">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <button class="profile__button-edit" type="button"></button>
-          <!--кнопка редактировать профиль-->
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="pages/index.css" />
+    <title>Mesto</title>
+  </head>
+  <body class="root">
+    <header class="header">
+      <img
+        src="./images/logo.png"
+        class="header__logo"
+        alt="логотип проект Место"
+      />
+    </header>
+    <main>
+      <section class="profile">
+        <div class="profile__container">
+          <img
+            src="./images/avatar.jpg"
+            alt="фото Жак-Ив Кусто"
+            class="profile__avatar"
+          />
+          <div class="profile__info">
+            <div class="profile__inner-container">
+              <h1 class="profile__name">Жак-Ив Кусто</h1>
+              <button class="profile__button-edit" type="button"></button>
+              <!--кнопка редактировать профиль-->
+            </div>
+            <p class="profile__about-name">Исследователь океана</p>
+          </div>
         </div>
-        <p class="profile__about-name">Исследователь океана</p>
+        <button class="profile__button-add" type="button"></button>
+        <!--кнопка добавить фото-->
+      </section>
+      <section class="elements">
+        <ul class="elements__list"></ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">&copy; 2022 Mesto Russian</p>
+    </footer>
+    <!--popup редактирования профиля-->
+    <div class="popup popup-edit">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <!--кнопка закрыть редактор профиля-->
+        <form class="popup__form" id="edit" name="edit" novalidate>
+          <h2 class="popup__title">Редактировать профиль</h2>
+          <fieldset class="popup__field">
+            <input
+              class="popup__input popup__field-name"
+              type="text"
+              placeholder="Имя"
+              required
+              minlength="2"
+              maxlength="40"
+              id="name"
+              name="name"
+            />
+            <span class="popup__input-error name-error"></span>
+            <input
+              class="popup__input popup__field-about-name"
+              type="text"
+              placeholder="О себе"
+              required
+              minlength="2"
+              maxlength="200"
+              id="about-name"
+              name="about-name"
+            />
+            <span class="popup__input-error about-name-error"></span>
+            <button type="submit" class="popup__button" disabled>
+              Сохранить
+            </button>
+            <!--кнопка сохранить редактор профиля-->
+          </fieldset>
+        </form>
       </div>
     </div>
-    <button class="profile__button-add" type="button"></button>
-    <!--кнопка добавить фото-->
-  </section>
-  <section class="elements">
-    <ul class="elements__list"></ul>
-  </section>
-</main>
-<footer class="footer">
-  <p class="footer__copyright">&copy; 2022 Mesto Russian</p>
-</footer>
-<!--popup редактирования профиля-->
-<div class="popup popup-edit">
-  <div class="popup__container">
-    <button class="popup__button-close" type="button"></button>
-    <!--кнопка закрыть редактор профиля-->
-    <form class="form popup__form" name="edit">
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <input class="popup__input popup__field-name" type="text" placeholder="Имя" value="Жак-Ив Кусто" />
-      <input class="popup__input popup__field-about-name" type="text" placeholder="О себе"
-        value="Исследователь океана" />
-      <button type="submit" class=" form__submit popup__button-save">Сохранить</button>
-      <!--кнопка сохранить редактор профиля-->
-    </form>
-  </div>
-</div>
-<!--popup добавления карточки-->
-<div class="popup popup-add">
-  <div class="popup__container">
-    <button class="popup__button-close" type="button"></button>
-    <!--кнопка закрыть popup добавления карточки-->
-    <form class="form popup__form" name="add">
-      <h2 class="popup__title">Новое место</h2>
-      <input class="popup__input popup__field-title" type="text" placeholder="Название" />
-      <input class="popup__input popup__field-url" type="url" placeholder="Ссылка на картинку" required />
-      <button type="submit" class="form__submit popup__button-save popup__button-save_add">Создать</button>
-      <!--кнопка сохранить popup добавления карточки-->
-    </form>
-  </div>
-</div>
-<!--окно с фото-->
-<div class="popup popup_img">
-  <div class="popup__container popup__container-img">
-    <div class="popup__img-box">
-      <img class="popup__images" src="#" alt="" />
-      <p class="popup__title-img"></p>
-      <button type="button" class="popup__button-close"></button>
-      <!--кнопка закрыть окна с фото -->
+    <!--popup добавления карточки-->
+    <div class="popup popup-add">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <!--кнопка закрыть popup добавления карточки-->
+
+        <form class="popup__form" id="add" name="add" novalidate>
+          <h2 class="popup__title">Новое место</h2>
+          <fieldset class="popup__field">
+            <input
+              class="popup__input popup__field-title"
+              type="text"
+              placeholder="Название"
+              minlength="2"
+              maxlength="30"
+              required
+              id="title"
+              name="title"
+            />
+            <span class="popup__input-error title-error"></span>
+            <input
+              class="popup__input popup__field-url"
+              type="url"
+              placeholder="Ссылка на картинку"
+              required
+              id="url"
+              name="link"
+            />
+            <span class="popup__input-error url-error"></span>
+            <button
+              type="submit"
+              class="popup__button popup__button_disabled"
+              disabled
+            >
+              Создать
+            </button>
+            <!--кнопка сохранить popup добавления карточки-->
+          </fieldset>
+        </form>
+      </div>
     </div>
-  </div>
-</div>
-<!--шаблон дефолта-->
-<template class="elements__template">
-  <li class="elements__element"> <img class="elements__img" />
-    <div class="elements__inner-container">
-      <h2 class="elements__title"></h2>
-      <button class="elements__icon-like" type="button"></button>
-      <!--кнопка лайк -->
-      <button class="elements__icon-delete" type="button"></button>
-      <!--кнопка удалить карточку -->
+    <!--окно с фото-->
+    <div class="popup popup_img">
+      <div class="popup__container popup__container-img">
+        <div class="popup__img-box">
+          <img class="popup__images" src="#" alt="" />
+          <p class="popup__title-img"></p>
+          <button type="button" class="popup__button-close"></button>
+          <!--кнопка закрыть окно с фото -->
+        </div>
+      </div>
     </div>
-  </li>
-</template>
-<script src="./scripts/cards.js"></script>
-<script src="./scripts/index.js"></script>
-<script src="./scripts/validate.js"></script>
-</body>
+    <!--шаблон дефолта-->
+    <template class="elements__template">
+      <li class="elements__element">
+        <img class="elements__img" />
+        <div class="elements__inner-container">
+          <h2 class="elements__title"></h2>
+          <button class="elements__icon-like" type="button"></button>
+          <!--кнопка лайк -->
+          <button class="elements__icon-delete" type="button"></button>
+          <!--кнопка удалить карточку -->
+        </div>
+      </li>
+    </template>
+    <script src="./scripts/cards.js"></script>
+    <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
+  </body>
 </html>

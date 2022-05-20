@@ -1,4 +1,4 @@
-const allSettings = {
+const settings = {
     formSelector: '.popup__form',
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
@@ -39,35 +39,38 @@ const allSettings = {
     });
   };
   
-  // отключить кнопку
-  const disablePopupButton = (button) => {
-    button.classList.add("popup__button_disabled");
-    button.disabled = "disabled";
+  // состояние кнопки 
+  const disablePopupButton = (buttonElement, inactiveButtonClass) => {
+    buttonElement.classList.add(inactiveButtonClass);
+    buttonElement.setAttribute('disabled', 'disabled'); 
   }
-  // состояние кнопки переключения
+
+  const enablePopupButton = (buttonElement, inactiveButtonClass) => {
+    buttonElement.classList.remove(inactiveButtonClass);
+    buttonElement.removeAttribute('disabled', 'disabled');
+  } 
+ 
   const toggleButtonState = (inputList, buttonElement, settings) => {
     if (hasInvalidInput(inputList)) {
-        disablePopupButton(buttonElement);
+        disablePopupButton(buttonElement, settings.inactiveButtonClass);        
     } else {
-        buttonElement.classList.remove(settings.inactiveButtonClass);
-        buttonElement.disabled = "";
+      enablePopupButton(buttonElement, settings.inactiveButtonClass);      
     }
   };
-  
+
   // набор слушателей на формы
   const setEventListeners = (formElement, settings) => {
     const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
-    const buttonElement = formElement.querySelector(settings.submitButtonSelector);
-    toggleButtonState(inputList, buttonElement, settings);
-  
+    const buttonElement = formElement.querySelector(settings.submitButtonSelector);    
     inputList.forEach(function (inputElement) {
         inputElement.addEventListener('input', function () {
             checkInputValidity(formElement, inputElement, settings);
             toggleButtonState(inputList, buttonElement, settings);
         });
+        toggleButtonState(inputList, buttonElement, settings);
     });
   };
-  
+ 
   // слушатель для валидации
   const enableValidation = (settings) => {
     const formList = Array.from(document.querySelectorAll(settings.formSelector));
@@ -79,5 +82,5 @@ const allSettings = {
     })
   };
   
-  enableValidation(allSettings);
+  enableValidation(settings);
   

@@ -15,8 +15,17 @@ const popupFieldName = popupEdit.querySelector(".popup__field-name");
 const popupFieldAboutName = popupEdit.querySelector(".popup__field-about-name");
 
 const popup = document.querySelectorAll(".popup");
-const popupImg = document.querySelector(".popup_img");
+//const popupImg = document.querySelector(".popup_img");
 
+const createCard = (card) => new Card(card, '.elements__template').generateCard();
+const elementsList = document.querySelector(".elements__list");
+const renderCards = (cards) => (  
+  cards.forEach((card) => elementsList.append(createCard(card)))
+);
+
+renderCards(initialCards);
+
+/*
 function createCard(cardData) {
   const elementsTemplate = document.querySelector(".elements__template").content;
   const elementsElement = elementsTemplate.querySelector(".elements__element").cloneNode(true);  
@@ -58,6 +67,7 @@ function renderCard(cardData) {
 initialCards.forEach(cardData => {
   renderCard(cardData);
 });
+*/
 
 //закрытие всех попапов
 function setlistenerClosePopup() {

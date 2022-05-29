@@ -26,12 +26,12 @@
           <div class="profile__info">
             <div class="profile__inner-container">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
-              <button class="profile__button-edit" type="button"></button>              
+              <button class="profile__button-edit" type="button"></button>
             </div>
             <p class="profile__about-name">Исследователь океана</p>
           </div>
         </div>
-        <button class="profile__button-add" type="button"></button>       
+        <button class="profile__button-add" type="button"></button>
       </section>
       <section class="elements">
         <ul class="elements__list"></ul>
@@ -43,7 +43,7 @@
     <!--popup редактирования профиля-->
     <div class="popup popup-edit">
       <div class="popup__container">
-        <button class="popup__button-close" type="button"></button>       
+        <button class="popup__button-close" type="button"></button>
         <form class="popup__form" id="edit" name="edit" novalidate>
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__field">
@@ -69,9 +69,7 @@
               name="about-name"
             />
             <span class="popup__input-error about-name-error"></span>
-            <button type="submit" class="popup__button" >
-              Сохранить
-            </button>           
+            <button type="submit" class="popup__button">Сохранить</button>
           </fieldset>
         </form>
       </div>
@@ -103,21 +101,19 @@
               name="link"
             />
             <span class="popup__input-error url-error"></span>
-            <button
-              type="submit"
-              class="popup__button popup__button_disabled">
+            <button type="submit" class="popup__button popup__button_disabled">
               Создать
-            </button>            
+            </button>
           </fieldset>
         </form>
       </div>
-    </div>    
+    </div>
     <div class="popup popup_img">
       <div class="popup__container popup__container-img">
         <div class="popup__img-box">
           <img class="popup__images" src="#" alt="" />
           <p class="popup__title-img"></p>
-          <button type="button" class="popup__button-close"></button>          
+          <button type="button" class="popup__button-close"></button>
         </div>
       </div>
     </div>
@@ -127,14 +123,16 @@
         <img class="elements__img" />
         <div class="elements__inner-container">
           <h2 class="elements__title"></h2>
-          <button class="elements__icon-like" type="button"></button>         
-          <button class="elements__icon-delete" type="button"></button>          
+          <button class="elements__icon-like" type="button"></button>
+          <button class="elements__icon-delete" type="button"></button>
         </div>
       </li>
     </template>
-  <!--  <script src="./scripts/Card.js"></script>
+    <!--  
+    <script src="./scripts/Card.js"></script>
     <script src="./scripts/index.js"></script>
-    <script src="./scripts/FormValidator.js"></script>-->
-     <script type="module" src="./scripts/index.js"></script>
+    <script src="./scripts/FormValidator.js"></script>
+  -->
+    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>

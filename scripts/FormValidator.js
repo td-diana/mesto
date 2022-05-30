@@ -53,28 +53,33 @@ export default class FormValidator {
   }
 
   // неверный ввод
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
-  // состояние кнопки
+  _disablePopupButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.setAttribute("disabled", "disabled");
+  }
+
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute("disabled", "disabled");
+      //this._buttonElement.classList.add(this._inactiveButtonClass);
+      //this._buttonElement.setAttribute("disabled", "disabled");
+      this._disablePopupButton();
     } else {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
       this._buttonElement.removeAttribute("disabled", "disabled");
     }
   }
 
-  // слушатель на формы и отключение кнопки пустой формы
   _setEventListeners() {
-    this._formElement.addEventListener("submit", () => {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.setAttribute("disabled", "disabled");
+    this._formElement.addEventListener("reset", () => {
+      // this._buttonElement.classList.add(this._inactiveButtonClass);
+      // this._buttonElement.setAttribute("disabled", "disabled");
+      this._disablePopupButton();
     });
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener("input", () => {

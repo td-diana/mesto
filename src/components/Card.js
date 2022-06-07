@@ -1,4 +1,4 @@
-import { openPopupImg } from './utils.js';
+import { openPopupImg } from '../scripts/utils.js';
 
 export default class Card {
   /*

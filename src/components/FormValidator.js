@@ -66,8 +66,6 @@ export default class FormValidator {
 
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
-      //this._buttonElement.classList.add(this._inactiveButtonClass);
-      //this._buttonElement.setAttribute("disabled", "disabled");
       this._disablePopupButton();
     } else {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
@@ -76,9 +74,7 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    this._formElement.addEventListener("reset", () => {
-      // this._buttonElement.classList.add(this._inactiveButtonClass);
-      // this._buttonElement.setAttribute("disabled", "disabled");
+    this._formElement.addEventListener("reset", () => {      
       this._disablePopupButton();
     });
     this._inputList.forEach((inputElement) => {

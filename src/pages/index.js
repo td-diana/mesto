@@ -2,6 +2,9 @@ import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import initialCards from "../utils/initialCards.js";
 
+
+//import Section from "../components/Section.js";
+
 const profileName = document.querySelector(".profile__name");
 const profileAboutName = document.querySelector(".profile__about-name");
 
@@ -22,10 +25,10 @@ const popupList = document.querySelectorAll(".popup");
 const cardsContainer = document.querySelector(".elements__list");
 //const elementsList = document.querySelector(".elements__list");
 
-const createCard = (card) =>
-  new Card(card, ".elements__template").generateCard();
-const renderCards = (cards) =>
-  cards.forEach((card) => cardsContainer.append(createCard(card)));
+
+
+const createCard = (card) =>  new Card(card, ".elements__template").generateCard();
+const renderCards = (cards) =>  cards.forEach((card) => cardsContainer.append(createCard(card)));
 
 renderCards(initialCards);
 

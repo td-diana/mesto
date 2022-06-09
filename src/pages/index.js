@@ -1,51 +1,61 @@
+import initialCards from "../utils/initialCards.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
-import initialCards from "../utils/initialCards.js";
+//import PopupWithImage from "../components/PopupWithImage.js";
+//import PopupWithForm from "../components/PopupWithForm.js";
+//import UserInfo from "../components/UserInfo.js";
+import Section from "../components/Section.js";
 
-
-//import Section from "../components/Section.js";
-
-const profileName = document.querySelector(".profile__name");
-const profileAboutName = document.querySelector(".profile__about-name");
-
-const profileButtonEdit = document.querySelector(".profile__button-edit");
-const profileButtonAdd = document.querySelector(".profile__button-add");
-
-const popupAdd = document.querySelector(".popup-add");
-const popupAddForm = popupAdd.querySelector(".popup__form");
-const popupFieldTitle = popupAdd.querySelector(".popup__field-title");
-const popupFieldUrl = popupAdd.querySelector(".popup__field-url");
-
-const popupEdit = document.querySelector(".popup-edit");
-const popupEditForm = popupEdit.querySelector(".popup__form");
-const popupFieldName = popupEdit.querySelector(".popup__field-name");
-const popupFieldAboutName = popupEdit.querySelector(".popup__field-about-name");
-
-const popupList = document.querySelectorAll(".popup");
-const cardsContainer = document.querySelector(".elements__list");
-//const elementsList = document.querySelector(".elements__list");
-
-
-
-const createCard = (card) =>  new Card(card, ".elements__template").generateCard();
-const renderCards = (cards) =>  cards.forEach((card) => cardsContainer.append(createCard(card)));
-
-renderCards(initialCards);
-
-const settingsValidator = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_invalid",
-  errorClass: "popup__input-error_active",
-};
+import {
+  settingsValidator,  
+  profileButtonEdit,
+  profileButtonAdd,  
+  popupAddForm,    
+  popupEditForm,
+  popupFieldName,
+  popupFieldAboutName,
+  popupList,  
+  cardTemplateSelector,
+  containerSelector,
+  //popupWithImageSelector,
+  //popupAddSelector,
+  //popupEditSelector,
+  //profileNameSelector,
+  //profileAboutNameSelector,
+} from "../utils/variables.js";
 
 const validationEdit = new FormValidator(settingsValidator, popupEditForm);
 const validationAdd = new FormValidator(settingsValidator, popupAddForm);
 
 validationEdit.enableValidation();
 validationAdd.enableValidation();
+
+
+// ----------------------------------------- отрисовка элементов
+const cardsList = new Section(
+  {
+    items: initialCards,
+    renderer: (cardItem) => createCard(cardItem),
+  },
+  containerSelector
+);
+
+/*
+const createCard = (card) =>  new Card(card, ".elements__template").generateCard();
+const renderCards = (cards) =>  cards.forEach((card) => cardsContainer.append(createCard(card)));
+
+renderCards(initialCards);
+*/
+
+// -----------------------------------------создание нового элемента
+const createCard = (data) => {
+  const card = new Card(data, cardTemplateSelector, () =>
+    popupWithImage.open(data)
+  );
+  return card.generateCard();
+};
+
+cardsList.addItems();
 
 //закрытие всех попапов
 function setlistenerClosePopup() {

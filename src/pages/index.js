@@ -1,9 +1,9 @@
 import initialCards from "../utils/initialCards.js";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
-//import PopupWithImage from "../components/PopupWithImage.js";
-//import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 //import UserInfo from "../components/UserInfo.js";
+//import PopupWithForm from "../components/PopupWithForm.js";
 import Section from "../components/Section.js";
 
 import {
@@ -17,7 +17,7 @@ import {
   popupList,  
   cardTemplateSelector,
   containerSelector,
-  //popupWithImageSelector,
+  popupWithImageSelector,
   //popupAddSelector,
   //popupEditSelector,
   //profileNameSelector,
@@ -29,6 +29,11 @@ const validationAdd = new FormValidator(settingsValidator, popupAddForm);
 
 validationEdit.enableValidation();
 validationAdd.enableValidation();
+
+// ----------------------------------------- всплывающее окно с изображением (изображение, название, подпись к картинке)
+
+const popupWithImage = new PopupWithImage(popupWithImageSelector);
+popupWithImage.setEventListeners();
 
 
 // ----------------------------------------- отрисовка элементов
@@ -57,6 +62,8 @@ const createCard = (data) => {
 
 cardsList.addItems();
 
+
+/*
 //закрытие всех попапов
 function setlistenerClosePopup() {
   popupList.forEach((item) => {
@@ -88,21 +95,6 @@ function openPopupEdit() {
   popupFieldAboutName.value = profileAboutName.textContent;
 }
 
-/*
-В качестве второго параметра метода addEventListener следует использовать ранее объявленую функцию. 
-Код имеет свойство расширяться и повторно использоваться. Поэтому функцию из второго параметра слушателя следует вынести и декларировать отдельно. А в методе addEventListener только ее вызывать. 
-Это позволит:
-облегчить читаемость кода,
-переиспользовать функцию при необходимости,
-удалить обработчик события с элемента при необходимости,
-название функции будет давать дополнительную информацию об её назначении.
-popupEditForm.addEventListener("submit", (evt) => {
-  evt.preventDefault();
-  profileName.textContent = popupFieldName.value;
-  profileAboutName.textContent = popupFieldAboutName.value;
-  closePopup(popupEdit);
-});
-*/
 
 const handleEditForm = (evt) => {
   evt.preventDefault();
@@ -138,3 +130,5 @@ profileButtonEdit.addEventListener("click", openPopupEdit);
 
 
 export { openPopup };
+
+*/

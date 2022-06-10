@@ -4,25 +4,17 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="pages/index.css" />
+   <!-- <link rel="stylesheet" href="pages/index.css" />-->
     <title>веб-сервис Mesto</title>
   </head>
   <body class="root">
-    <header class="header">
-      <img
-        src="./images/logo.png"
-        class="header__logo"
-        alt="логотип проект Место"
-      />
+    <header class="header">       
+      <img src="<%=require('./images/logo.png')%>" class="header__logo" alt="логотип проект Место"/>
     </header>
     <main>
       <section class="profile">
         <div class="profile__container">
-          <img
-            src="./images/avatar.jpg"
-            alt="фото Жак-Ив Кусто"
-            class="profile__avatar"
-          />
+          <img src="<%=require('./images/avatar.jpg')%>" alt="фото Жак-Ив Кусто" class="profile__avatar"/>
           <div class="profile__info">
             <div class="profile__inner-container">
               <h1 class="profile__name">Жак-Ив Кусто</h1>

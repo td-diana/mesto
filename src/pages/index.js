@@ -28,7 +28,7 @@ const validationAdd = new FormValidator(settingsValidator, popupAddForm);
 validationEdit.enableValidation();
 validationAdd.enableValidation();
 
-// ----------------------------------------- всплывающее окно с изображением (изображение, название, подпись к картинке)
+// ----------------------------- всплывающее окно с изображением (изображение, название, подпись к картинке)
 
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 popupWithImage.setEventListeners();
@@ -46,7 +46,9 @@ const cardsList = new Section(
 // --------------------------------------- управление отображением информации о пользователе
 const userInfo = new UserInfo(profileNameSelector, profileAboutNameSelector);
 
+
 // -----------------------------------------создание нового элемента
+
 const createCard = (data) => {
   const card = new Card(data, cardTemplateSelector, () =>
     popupWithImage.open(data)

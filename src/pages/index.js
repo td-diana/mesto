@@ -20,7 +20,16 @@ import {
   popupEditSelector,
   profileNameSelector,
   profileAboutNameSelector,
+  popupFieldName,
+  popupFieldAboutName
 } from "../utils/variables.js";
+
+
+const profileForm = () => {
+  const userData = userInfo.getUserInfo();
+  popupFieldName.value = userData.name;
+  popupFieldAboutName.value = userData.aboutname;
+};
 
 const validationEdit = new FormValidator(settingsValidator, popupEditForm);
 const validationAdd = new FormValidator(settingsValidator, popupAddForm);
@@ -28,58 +37,58 @@ const validationAdd = new FormValidator(settingsValidator, popupAddForm);
 validationEdit.enableValidation();
 validationAdd.enableValidation();
 
-// ----------------------------- всплывающее окно с изображением (изображение, название, подпись к картинке)
-
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 popupWithImage.setEventListeners();
+
+const editPopupAdd = data => {  
+  const item = {
+    name: data.title,
+    link: data.link,
+  };
+  cardsList.addItem(item);
+  popupAdd.close();
+}
+
+const popupAdd = new PopupWithForm(
+  popupAddSelector,
+  editPopupAdd
+  );
+
+popupAdd.setEventListeners();
+
+const userInfo = new UserInfo(profileNameSelector, profileAboutNameSelector);
+
+const editPopupEdit = data => {
+  userInfo.setUserInfo(data);
+  popupEdit.close();
+}
+
+const popupEdit = new PopupWithForm(
+  popupEditSelector,
+  editPopupEdit
+  ); 
+
+popupEdit.setEventListeners();
+
+// -----------------------------------------создание новой карточки
+const createCard = (data) => new Card(data, cardTemplateSelector, () => popupWithImage.open(data)).generateCard();
 
 
 // ----------------------------------------- отрисовка элементов
 const cardsList = new Section(
   {
     items: initialCards,
-    renderer: (cardItem) => createCard(cardItem),
+    renderer: (cardItem) => createCard(cardItem),    
   },
   containerSelector
 );
-
-// --------------------------------------- управление отображением информации о пользователе
-const userInfo = new UserInfo(profileNameSelector, profileAboutNameSelector);
-
-
-// -----------------------------------------создание нового элемента
-
-const createCard = (data) => {
-  const card = new Card(data, cardTemplateSelector, () =>
-    popupWithImage.open(data)
-  );
-  return card.generateCard();
-};
-
 cardsList.addItems();
 
-// ------------------------------------ попап добавления нового элемента
-const popupAdd = new PopupWithForm(popupAddSelector, (data) => {
-  const { title: name, link } = data;
-  cardsList.addItem({ name, link });
-});
-
-popupAdd.setEventListeners();
-
-profileButtonAdd.addEventListener("click", () => {
+profileButtonAdd.addEventListener("click", () => {  
   popupAdd.open();
 });
 
-//------------------------------------- попап редактирования профиля
-const popupEdit = new PopupWithForm(
-  popupEditSelector,
-  ({ name, aboutname }) => {
-    userInfo.setUserInfo({ name, aboutname });
-  });
-
-popupEdit.setEventListeners();
-
-profileButtonEdit.addEventListener("click", () => {
-  popupEdit.setInputValues(userInfo.getUserInfo());
+profileButtonEdit.addEventListener("click", () => {  
+  profileForm();
   popupEdit.open();
 });

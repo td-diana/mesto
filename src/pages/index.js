@@ -1,3 +1,4 @@
+
 import './index.css'; 
 import initialCards from "../utils/initialCards.js";
 import FormValidator from "../components/FormValidator.js";
@@ -8,22 +9,21 @@ import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 
 import {
-  settingsValidator,  
+  settingsValidator, 
   profileButtonEdit,
-  profileButtonAdd,  
-  popupAddForm,    
-  popupEditForm,      
+  profileButtonAdd, 
+  popupAddForm,  
+  popupEditForm,
+  popupFieldName,
+  popupFieldAboutName, 
+  popupWithImageSelector,
   cardTemplateSelector,
   containerSelector,
-  popupWithImageSelector,
   popupAddSelector,
   popupEditSelector,
   profileNameSelector,
   profileAboutNameSelector,
-  popupFieldName,
-  popupFieldAboutName
 } from "../utils/variables.js";
-
 
 const profileForm = () => {
   const userData = userInfo.getUserInfo();
@@ -40,20 +40,12 @@ validationAdd.enableValidation();
 const popupWithImage = new PopupWithImage(popupWithImageSelector);
 popupWithImage.setEventListeners();
 
-const editPopupAdd = data => {  
-  const item = {
-    name: data.title,
-    link: data.link,
-  };
-  cardsList.addItem(item);
+const popupAdd = new PopupWithForm(popupAddSelector, formValues => {
+  const card = createCard(formValues);
+  const cardElement = card.generateCard();
+  cardsList.addItem(cardElement)
   popupAdd.close();
-}
-
-const popupAdd = new PopupWithForm(
-  popupAddSelector,
-  editPopupAdd
-  );
-
+});
 popupAdd.setEventListeners();
 
 const userInfo = new UserInfo(profileNameSelector, profileAboutNameSelector);
@@ -70,17 +62,26 @@ const popupEdit = new PopupWithForm(
 
 popupEdit.setEventListeners();
 
-// -----------------------------------------создание новой карточки
-const createCard = (data) => new Card(data, cardTemplateSelector, () => popupWithImage.open(data)).generateCard();
+const createCard = (data) => {
+  const card = new Card( {
+    data: data, 
+    handleCardClick: () => {
+    popupWithImage.open(data)
+    }
+  }, cardTemplateSelector)
+  return card
+}
 
-
-// ----------------------------------------- отрисовка элементов
 const cardsList = new Section(
   {
     items: initialCards,
-    renderer: (cardItem) => createCard(cardItem),    
-  },
-  containerSelector
+    renderer: item => {
+      const card = createCard(item);
+      const cardElement = card.generateCard(); 
+      cardsList.addItem(cardElement)
+  }
+},
+containerSelector
 );
 cardsList.addItems();
 

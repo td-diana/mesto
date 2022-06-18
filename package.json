@@ -19,8 +19,10 @@
     "autoprefixer": "^10.4.7",
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "cssnano": "^5.1.11",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "mini-css-extract-plugin": "^2.6.0",
     "postcss-loader": "^7.0.0",
@@ -33,7 +35,7 @@
   },
   "homepage": "https://github.com/td-diana/mesto#readme",
   "keywords": [],
-  "dependencies": {   
-    "core-js": "^3.22.8"    
+  "dependencies": {
+    "core-js": "^3.22.8"
   }
 }

@@ -1,53 +1,104 @@
-export default class Card {  
-  constructor( { data, handleCardClick },
-    cardTemplateSelector) {
-  this._link = data.link;
-  this._name = data.name;   
-  this._cardTemplateSelector = cardTemplateSelector;
-  this._handleCardClick = handleCardClick;
-}
+export default class Card {
+  constructor(
+    { data, handleCardClick, handleLikeButton, handleCardDelete },
+    cardTemplateSelector,
+    api,
+    userId
+  ) {
+    this._link = data.link;
+    this._name = data.name;
+    this._likes = data.likes;
 
-_getTemplate() {
-  const cardElement = document
-    .querySelector(this._cardTemplateSelector)
-    .content.querySelector(".elements__card")
-    .cloneNode(true);
+    this._api = api;
+    this._id = data._id;
+    this._ownerId = data.owner._id;
+    this._userId = userId;
 
-  return cardElement;
-}
+    this._cardTemplateSelector = cardTemplateSelector;
+    this._handleCardClick = handleCardClick;
+    this._handleLikeButton = handleLikeButton;
+    this._handleCardDelete = handleCardDelete;
+  }
 
-_handleLikeButton() {
-  this._buttonLike.classList.toggle("elements__icon-like_mod_active");
-}
+  _getTemplate() {
+    const cardElement = document
+      .querySelector(this._cardTemplateSelector)
+      .content.querySelector(".elements__card")
+      .cloneNode(true);
 
-_removeButton() {
-  this._element.remove();
-  this._element = null;
-}
+    return cardElement;
+  }
 
-_setEventListeners() {
-  this._buttonLike.addEventListener("click", () => {
-    this._handleLikeButton();
-  });
+  //_handleLikeButton() {
+  // this._buttonLike.classList.toggle("elements__icon-like_mod_active");}
 
-  this._buttonDelete.addEventListener("click", () => {
-    this._removeButton();
-  });
+  handleLikeCard() {
+    const likeButton = this.__element.querySelector(".elements__icon-like");
+    const likeCount = this.__element.querySelector(".elements__like-counter");
 
-  this._elementImage.addEventListener('click', () => {
-  this._handleCardClick({ name: this._name, src: this._link });    
-});  
-}
+    if (!likeButton.classList.contains("elements__icon-like_mod_active")) {
+      this._api
+        .like(this._id)
+        .then((data) => {
+          likeButton.classList.add("elements__icon-like_mod_active");
+          likeCount.textContent = data.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else {
+      this._api
+        .dislike(this._id)
+        .then((data) => {
+          likeButton.classList.remove("elements__icon-like_mod_active");
+          likeCount.textContent = data.likes.length;
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
 
-generateCard() {
-  this._element = this._getTemplate();  
-  this._elementImage = this._element.querySelector(".elements__img"); 
-  this._elementImage.src = this._link;
-  this._elementImage.alt = this._name;
-  this._element.querySelector(".elements__title").textContent = this._name;
-  this._buttonLike = this._element.querySelector(".elements__icon-like");
-  this._buttonDelete = this._element.querySelector(".elements__icon-delete");
-  this._setEventListeners();
-  return this._element;
-}
+  removeButton() {
+    this._element.remove();
+    this._element = null;
+  }
+
+  _setEventListeners() {
+    this._buttonLike.addEventListener("click", () => {
+      this._handleLikeButton();
+    });
+
+    this._buttonDelete.addEventListener("click", () => {
+      this._handleCardDelete();
+    });
+
+    this._elementImage.addEventListener("click", () => {
+      this._handleCardClick({ name: this._name, src: this._link });
+    });
+  }
+
+  generateCard() {
+    this._element = this._getTemplate();
+    this._elementImage = this._element.querySelector(".elements__img");
+    this._elementImage.src = this._link;
+    this._elementImage.alt = this._name;
+    this._element.querySelector(".elements__title").textContent = this._name;
+    this._buttonLike = this._element.querySelector(".elements__icon-like");
+    this._buttonDelete = this._element.querySelector(".elements__icon-delete");
+    this._element.querySelector(".elements__like-counter").textContent =
+      this._likes.length;
+    if (!(this._ownerId === this._userId)) {
+      this._element.querySelector(".elements__icon-delete").style.display =
+        "none";
+    }
+    if (this._likes.find((obj) => this._userId === obj._id)) {
+      this._element
+        .querySelector(".elements__icon-like")
+        .classList.add("elements__icon-like_mod_active");
+    }
+    this._setEventListeners();
+
+    return this._element;
+  }
 }

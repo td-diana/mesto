@@ -4,17 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   <!-- <link rel="stylesheet" href="pages/index.css" />-->
+    <!-- <link rel="stylesheet" href="pages/index.css" />-->
     <title>веб-сервис Mesto</title>
   </head>
   <body class="root">
-    <header class="header">       
-      <img src="<%=require('./images/logo.png')%>" class="header__logo" alt="логотип проект Место"/>
+    <header class="header">
+      <img
+        src="<%=require('./images/logo.png')%>"
+        class="header__logo"
+        alt="логотип проект Место"
+      />
     </header>
     <main>
       <section class="profile">
         <div class="profile__container">
-          <img src="<%=require('./images/avatar.jpg')%>" alt="фото Жак-Ив Кусто" class="profile__avatar"/>
+          <!-- <img src="<%=require('./images/avatar.jpg')%>" alt="фото Жак-Ив Кусто" class="profile__avatar"/> -->
+          <div class="profile__avatar-container">
+            <img class="profile__avatar" alt="" />
+            <button type="button" class="profile__button-avatar-edit"></button>
+          </div>
+
           <div class="profile__info">
             <div class="profile__inner-container">
               <h1 class="profile__name">Жак-Ив Кусто</h1>
@@ -29,11 +38,10 @@
       <section class="elements">
         <ul class="elements__list"></ul>
       </section>
-      
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2022 Mesto Russian</p>
-    </footer>    
+    </footer>
     <div class="popup popup-edit">
       <div class="popup__container">
         <button class="popup__button-close" type="button"></button>
@@ -66,8 +74,8 @@
           </fieldset>
         </form>
       </div>
-    </div>  
-      
+    </div>
+
     <div class="popup popup-add">
       <div class="popup__container">
         <button class="popup__button-close" type="button"></button>
@@ -111,22 +119,63 @@
         </div>
       </div>
     </div>
+
+    <!-- редактор аватара -->
+    <div class="popup popup-avatar">
+      <div class="popup__container">
+        <button class="popup__button-close" type="button"></button>
+        <form class="popup__form" name="avatar" novalidate>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <fieldset class="popup__field">
+            <input
+              type="url"
+              class="popup__input popup__input_avatar-link"
+              id="form-input-avatar-link"
+              name="avatarlink"
+              placeholder="Ссылка на картинку"
+              required
+            />
+            <span
+              class="popup__input-error form-input-avatar-link-error"
+            ></span>
+            <input
+              type="submit"
+              class="popup__button popup__button_disabled"
+              value="Сохранить"
+            />
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <!-- окно подтверждения -->
+    <div class="popup popup-confirm">
+      <div class="popup__container">
+        <button
+          class="popup__button-close"
+          type="button"
+          aria-label="Закрыть"
+        ></button>
+        <form class="popup__form" name="confirm" novalidate>
+          <h2 class="popup__title">Вы уверены?</h2>
+          <input type="submit" class="popup__button" value="Да" />
+        </form>
+      </div>
+    </div>
+
     <!--шаблон дефолта-->
     <template class="elements__template">
       <li class="elements__card">
         <img class="elements__img" />
         <div class="elements__inner-container">
           <h2 class="elements__title"></h2>
-          <button class="elements__icon-like" type="button"></button>
+          <!--  <button class="elements__icon-like" type="button"></button> -->
+          <div class="elements__like-container">
+            <button class="elements__icon-like" type="button"></button>
+            <span class="elements__like-counter">0</span>
+          </div>
           <button class="elements__icon-delete" type="button"></button>
         </div>
       </li>
     </template>
-    <!--  
-    <script src="./scripts/Card.js"></script>
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/FormValidator.js"></script>  
-    <script type="module" src="./pages/index.js"></script>
-  -->
-  </body>
+   </body>
 </html>

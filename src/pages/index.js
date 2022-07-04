@@ -35,9 +35,9 @@ import {
 let userId;
 
 const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-42",
+  url: "https://mesto.nomoreparties.co/v1/cohort-44",
   headers: {
-    authorization: "c56e30dc-2883-4270-a59e-b2f7bae969c6",
+    authorization: "cd3dfc8b-e143-41af-a84b-cea0d68401cf",
     "Content-Type": "application/json",
   },
 });

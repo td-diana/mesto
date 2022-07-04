@@ -38,6 +38,6 @@
   "homepage": "https://github.com/td-diana/mesto#readme",
   "keywords": [],
   "dependencies": {
-    "core-js": "^3.22.8"
+    "core-js": "^3.23.3"
   }
 }

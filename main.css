@@ -13,7 +13,7 @@
 .popup__button-save{background:#000;border-radius:2px;border-width:0;color:#fff;cursor:pointer;height:50px;margin:48px auto 37px;padding:0;text-align:center;width:358px}.popup__button-save:hover{opacity:.8}@media screen and (max-width:510px){.popup__button-save{width:238px}}
 .popup__button-close{background:url(039f1f5203f653b4bacd.svg) no-repeat;border:none;cursor:pointer;height:32px;margin:0;padding:0;position:absolute;right:-40px;top:-40px;width:32px}.popup__button-close:hover{opacity:.6}@media screen and (max-width:510px){.popup__button-close{background-size:20px 20px;height:20px;right:0;top:-36px;width:20px}}
 .popup_opened{opacity:1;transition:visibility .5s linear,opacity .5s linear;visibility:visible}
-.popup__form{align-items:center;display:flex;flex-direction:column;max-width:calc(100% - 72px)}
+.popup__form{align-items:center;display:flex;flex-direction:column;max-width:430px}
 .popup__input{border:none;border-bottom:1px solid rgba(0,0,0,.2);font-size:14px;font-style:normal;font-weight:400;line-height:17px;margin:2px 36px;padding-bottom:13px;width:358px}.popup__input:last-of-type{margin-bottom:0}.popup__input:first-of-type{margin-bottom:0;margin-top:0}@media screen and (max-width:510px){.popup__input{width:238px}}
 .profile__avatar{background-size:cover;border-radius:50%;height:120px;padding:0;width:120px}@media screen and (max-width:600px){.profile__avatar{margin:0}}
 .profile__info{display:flex;flex-direction:column;margin:20px 0}@media screen and (max-width:600px){.profile__info{align-items:center;margin:26px 0 36px}}
@@ -38,7 +38,7 @@
 @media screen and (max-width:510px){.popup__field-title{margin:25px 30px 75px 22px}}
 @media screen and (max-width:510px){.popup__field-url{margin:5px 30px 75px 22px}}
 .popup__field{border:none;display:flex;flex-direction:column;margin:0;padding:0}
-.popup__button{background:#000;border-radius:2px;border-width:0;color:#fff;cursor:pointer;margin:15px auto 37px;min-height:50px;padding:0;text-align:center;width:358px}.popup__button:hover{opacity:.8}@media screen and (max-width:510px){.popup__button{width:238px}}
+.popup__button{background:#000;border-radius:2px;border-width:0;color:#fff;cursor:pointer;margin:15px 36px 37px;min-height:50px;padding:0;text-align:center;width:358px}.popup__button:hover{opacity:.8}@media screen and (max-width:510px){.popup__button{width:238px}}
 .popup__button_disabled{background:#fff;border:1px solid #000;box-sizing:border-box;color:#000;opacity:.2;pointer-events:none}
 .popup__input_invalid{border-bottom:1px solid red}
 .popup__input-error{align-self:flex-start;color:red;font-size:12px;font-style:normal;font-weight:400;line-height:1.25;margin-left:35px;margin-top:5px;min-height:30px;opacity:0;visibility:hidden;width:358px}@media screen and (max-width:510px){.popup__input-error{width:238px}}

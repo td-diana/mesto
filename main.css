@@ -38,7 +38,7 @@
 @media screen and (max-width:510px){.popup__field-title{margin:25px 30px 75px 22px}}
 @media screen and (max-width:510px){.popup__field-url{margin:5px 30px 75px 22px}}
 .popup__field{border:none;display:flex;flex-direction:column;margin:0;padding:0}
-.popup__button{background:#000;border-radius:2px;border-width:0;color:#fff;cursor:pointer;height:50px;margin:15px auto 37px;padding:0;text-align:center;width:100%}.popup__button:hover{opacity:.8}@media screen and (max-width:510px){.popup__button{width:238px}}
+.popup__button{background:#000;border-radius:2px;border-width:0;color:#fff;cursor:pointer;margin:15px auto 37px;min-height:50px;padding:0;text-align:center;width:358px}.popup__button:hover{opacity:.8}@media screen and (max-width:510px){.popup__button{width:238px}}
 .popup__button_disabled{background:#fff;border:1px solid #000;box-sizing:border-box;color:#000;opacity:.2;pointer-events:none}
 .popup__input_invalid{border-bottom:1px solid red}
 .popup__input-error{align-self:flex-start;color:red;font-size:12px;font-style:normal;font-weight:400;line-height:1.25;margin-left:35px;margin-top:5px;min-height:30px;opacity:0;visibility:hidden;width:358px}@media screen and (max-width:510px){.popup__input-error{width:238px}}

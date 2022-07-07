@@ -8,8 +8,6 @@ import Section from "../components/Section.js";
 import Api from "../components/Api.js";
 import PopupWithConfirm from "../components/PopupWithConfirm.js";
 
-import initialCards from "../utils/initialCards.js";
-
 import {
   settingsValidator,
   profileButtonEdit,
@@ -32,10 +30,8 @@ import {
   popupAvatarEditSelector,
 } from "../utils/variables.js";
 
-let userId;
-
 const api = new Api({
-  url: "https://mesto.nomoreparties.co/v1/cohort-44",
+  url: "https://nomoreparties.co/v1/cohort-44/",
   headers: {
     authorization: "cd3dfc8b-e143-41af-a84b-cea0d68401cf",
     "Content-Type": "application/json",
@@ -94,7 +90,7 @@ const createCard = (data) => {
 
 const cardsList = new Section(
   {
-    items: initialCards,
+    // items: initialCards,
     renderer: (item) => {
       const card = createCard(item);
       const cardElement = card.generateCard();
@@ -107,9 +103,6 @@ const cardsList = new Section(
 //cardsList.addItems();
 
 const popupAdd = new PopupWithForm(popupAddSelector, (formValues) => {
-  //  const card = createCard(formValues);
-  //  const cardElement = card.generateCard();
-  //  cardsList.addItem(cardElement)
   api
     .addUserCard(formValues)
     .then((data) => {
@@ -150,6 +143,8 @@ const popupAvatar = new PopupWithForm(popupAvatarEditSelector, (formValues) => {
     .finally(() => popupAvatar.renderLoading(false));
 });
 popupAvatar.setEventListeners();
+
+let userId;
 
 api
   .getAllNeededData()

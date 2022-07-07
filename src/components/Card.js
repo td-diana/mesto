@@ -8,12 +8,10 @@ export default class Card {
     this._link = data.link;
     this._name = data.name;
     this._likes = data.likes;
-
     this._api = api;
     this._id = data._id;
     this._ownerId = data.owner._id;
     this._userId = userId;
-
     this._cardTemplateSelector = cardTemplateSelector;
     this._handleCardClick = handleCardClick;
     this._handleLikeButton = handleLikeButton;
@@ -33,8 +31,8 @@ export default class Card {
   // this._buttonLike.classList.toggle("elements__icon-like_mod_active");}
 
   handleLikeCard() {
-    const likeButton = this.__element.querySelector(".elements__icon-like");
-    const likeCount = this.__element.querySelector(".elements__like-counter");
+    const likeButton = this._element.querySelector(".elements__icon-like");
+    const likeCount = this._element.querySelector(".elements__like-counter");
 
     if (!likeButton.classList.contains("elements__icon-like_mod_active")) {
       this._api

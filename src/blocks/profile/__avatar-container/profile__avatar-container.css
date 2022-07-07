@@ -2,3 +2,9 @@
   position: relative;
   margin-right: 30px;
 }
+
+@media screen and (max-width: 600px) {
+  .profile__avatar-container {
+    margin: 0 auto;
+  }
+}

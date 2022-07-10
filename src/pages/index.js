@@ -63,28 +63,50 @@ const createCard = (data) => {
     {
       data: data,
       handleCardClick: () => popupWithImage.open(data),
-      handleLikeButton: () => card.handleLikeCard(),
+     // handleLikeButton: () => card.handleLikeCard(),
       handleCardDelete: () => {
         confirmDeletePopup.setSubmitAction(() => {
           confirmDeletePopup.renderLoadingWhileDeleting(true);
           api
             .delete(data._id)
             .then(() => {
-              card.removeButton();
+              card.removeCard();
               confirmDeletePopup.close();
             })
             .catch((err) => console.log(err))
             .finally(() =>
-              confirmDeletePopup.renderLoadingWhileDeleting(false)
-            );
-        });
-        confirmDeletePopup.open();
-      },
+              confirmDeletePopup.renderLoadingWhileDeleting(false))
+          }); 
+        confirmDeletePopup.open()
+        },
+      handleLikeCard: () => {
+        if (!card.isLiked()) {
+          api
+            .like(data._id)
+            .then((data) => {              
+              card.updateData(data);
+              card.handleLikeButton();
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        } else {
+          api
+            .dislike(data._id)
+            .then((data) => {    
+              card.updateData(data);        
+              card.handleLikeButton();
+            })
+            .catch((err) => {
+              console.log(err);
+            })
+        }
+      }
     },
     cardTemplateSelector,
     api,
-    userId
-  );
+    userId,
+      );
   return card;
 };
 
@@ -92,8 +114,9 @@ const cardsList = new Section(
   {
     // items: initialCards,
     renderer: (item) => {
-      const card = createCard(item);
-      const cardElement = card.generateCard();
+      // const card = createCard(item);
+      // const cardElement = card.generateCard();
+      const cardElement = createCard(item).generateCard()
       cardsList.addItem(cardElement);
     },
   },
@@ -106,14 +129,15 @@ const popupAdd = new PopupWithForm(popupAddSelector, (formValues) => {
   api
     .addUserCard(formValues)
     .then((data) => {
-      const card = createCard(data);
-      const cardElement = card.generateCard();
+      // const card = createCard(data);
+      // const cardElement = card.generateCard();
+      const cardElement = createCard(data).generateCard()
       cardsList.addItem(cardElement);
       validationAdd.disablePopupButton();
       popupAdd.close();
     })
     .catch((err) => console.log(err))
-    .finally(() => popupAdd.renderLoading(true));
+    .finally(() => popupAdd.renderLoading(false));
 });
 popupAdd.setEventListeners();
 
